@@ -29,4 +29,4 @@ EXPOSE 5173
 
 # Run App
 ENTRYPOINT ["npm","run"]
-CMD ["dev","--","host"]
+CMD ["dev","--","--host"]
