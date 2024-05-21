@@ -79,7 +79,7 @@ pipeline {
         stage("Docker: Artifact Cleanup"){
             steps{
                 script{
-                    docker_cleanup(""wanderlust-frontend","3.2","madhupdevops"")
+                    docker_cleanup("wanderlust-frontend","3.2","madhupdevops")
                 }
             }
         }
