@@ -16,5 +16,21 @@ pipeline {
                 }
             }
         }
+
+        stage('SonarQube: Code Quality') {
+            steps {
+                script{
+                    sonarqube_code_quality()
+                }
+            }
+        }
+
+        stage('SonarQube: Code Analysis') {
+            steps {
+                script{
+                    sonarqube_analysis("sonar","Wanderlust","Wanderlust")
+                }
+            }
+        }
     }
 }
