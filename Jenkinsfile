@@ -47,7 +47,7 @@ pipeline {
         stage("Docker: Frontend Dockerization"){
             steps{
                 script{
-                    docker_build("wanderlust-backend","3.2","madhupdevops","frontend")
+                    docker_build("wanderlust-frontend","3.2","madhupdevops","frontend")
                 }
             }
         }
