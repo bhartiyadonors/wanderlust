@@ -3,7 +3,7 @@
 pipeline {
     agent {label 'slave1'}
     environment{
-        SONAR_HOME = tool "sonar"
+        SONAR_HOME = tool "Sonar"
     }
     stages {
         stage('Clean Workspace') {
