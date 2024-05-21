@@ -11,7 +11,7 @@ COPY . /app
 RUN npm i
 
 # Copy environtment file to container
-COPY .env.sample .env
+#COPY .env.sample .env
 
 # Expose port
 EXPOSE 5000
