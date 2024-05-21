@@ -20,10 +20,10 @@ pipeline {
             }
         }
 
-        stage('SonarQube: Code Quality Gates'){
+        stage('SonarQube: Code Analysis'){
             steps{
                 script{
-                    sonarqube_code_quality()
+                    sonarqube_analysis("sonar","Wanderlust","Wanderlust")
                 }
             }
         }
