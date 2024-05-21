@@ -47,7 +47,7 @@ pipeline {
         stage("Docker: Frontend Dockerization"){
             steps{
                 script{
-                    trivy_scan("Wanderlust-frontend","3.2","madhupdevops","frontend")
+                    trivy_scan()
                 }
             }
         }
