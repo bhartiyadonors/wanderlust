@@ -47,7 +47,7 @@ pipeline {
         stage("Docker: Frontend Dockerization"){
             steps{
                 script{
-                    trivy_scan()
+                    docker_build("Wanderlust-backend","3.2","madhupdevops","frontend")
                 }
             }
         }
@@ -55,7 +55,7 @@ pipeline {
         stage("Docker: Backend Dockerization"){
             steps{
                 script{
-                    trivy_scan("Wanderlust-backend","3.2","madhupdevops","backend")
+                    docker_build("Wanderlust-backend","3.2","madhupdevops","backend")
                 }
             }
         }
