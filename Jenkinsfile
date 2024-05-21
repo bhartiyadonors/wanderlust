@@ -60,17 +60,10 @@ pipeline {
             }
         }
 
-        stage("Docker: Pushing Frontend to DockerHub"){
+        stage("Docker: Pushing to DockerHub"){
             steps{
                 script{
                     docker_push("wanderlust-frontend","3.2","madhupdevops")
-                }
-            }
-        }
-
-        stage("Docker: Pushing Backend to DockerHub"){
-            steps{
-                script{
                     docker_push("wanderlust-backend","3.2","madhupdevops")
                 }
             }
