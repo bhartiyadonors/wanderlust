@@ -27,5 +27,13 @@ pipeline {
                 }
             }
         }
+
+        stage("SonarQube: Quality Gates"){
+            steps{
+                script{
+                    sonarqube_code_quality()
+                }
+            }
+        }
     }
 }
