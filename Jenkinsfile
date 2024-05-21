@@ -12,7 +12,7 @@ pipeline {
         stage('Git: Code Checkout') {
             steps {
                 script{
-                    code_checkout()
+                    code_checkout("https://github.com/DevMadhup/wanderlust.git","feat-131-dockerize")
                 }
             }
         }
