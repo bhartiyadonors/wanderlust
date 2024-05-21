@@ -11,7 +11,9 @@ pipeline {
 
         stage('Git: Code Checkout') {
             steps {
-                code_checkout("https://github.com/DevMadhup/wanderlust.git","feat-131-dockerize")
+                script{
+                    code_checkout("https://github.com/DevMadhup/wanderlust.git","feat-131-dockerize")
+                }
             }
         }
     }
