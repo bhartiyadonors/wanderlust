@@ -35,5 +35,45 @@ pipeline {
                 }
             }
         }
+
+        stage("Trivy: Filesystem scan"){
+            steps{
+                script{
+                    trivy_scan()
+                }
+            }
+        }
+
+        stage("Docker: Frontend Dockerization"){
+            steps{
+                script{
+                    trivy_scan("Wanderlust-frontend","3.2","madhupdevops","frontend")
+                }
+            }
+        }
+
+        stage("Docker: Backend Dockerization"){
+            steps{
+                script{
+                    trivy_scan("Wanderlust-backend","3.2","madhupdevops","backend")
+                }
+            }
+        }
+
+        stage("Docker: Pushing Frontend to DockerHub"){
+            steps{
+                script{
+                    docker_push("Wanderlust-frontend","3.2","madhupdevops")
+                }
+            }
+        }
+
+        stage("Docker: Pushing Backend to DockerHub"){
+            steps{
+                script{
+                    docker_push("Wanderlust-backend","3.2","madhupdevops")
+                }
+            }
+        }
     }
 }
