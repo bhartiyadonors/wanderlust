@@ -28,7 +28,9 @@ pipeline {
         stage('SonarQube: Code Analysis') {
             steps {
                 script{
-                    sonarqube_analysis("sonar","Wanderlust","Wanderlust")
+                    withSonarQubeEnv("sonar"){
+                        sonarqube_analysis("sonar","Wanderlust","Wanderlust")
+                    }
                 }
             }
         }
