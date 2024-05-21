@@ -40,6 +40,5 @@ spec:
     labels:
       app: backend
   ports:
-    - port: 8000
+    - port: 5000
       protocol: TCP
-      targetPort: 8000
