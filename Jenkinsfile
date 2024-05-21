@@ -24,15 +24,5 @@ pipeline {
                 }
             }
         }
-
-        stage('SonarQube: Code Analysis') {
-            steps {
-                script{
-                    withSonarQubeEnv("sonar"){
-                        sonarqube_analysis("sonar","Wanderlust","Wanderlust")
-                    }
-                }
-            }
-        }
     }
 }
