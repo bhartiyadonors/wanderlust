@@ -47,7 +47,7 @@ pipeline {
         stage("Docker: Frontend Dockerization"){
             steps{
                 script{
-                    docker_build("Wanderlust-backend","3.2","madhupdevops","frontend")
+                    docker_build("wanderlust-backend","3.2","madhupdevops","frontend")
                 }
             }
         }
@@ -55,7 +55,7 @@ pipeline {
         stage("Docker: Backend Dockerization"){
             steps{
                 script{
-                    docker_build("Wanderlust-backend","3.2","madhupdevops","backend")
+                    docker_build("wanderlust-backend","3.2","madhupdevops","backend")
                 }
             }
         }
@@ -63,7 +63,7 @@ pipeline {
         stage("Docker: Pushing Frontend to DockerHub"){
             steps{
                 script{
-                    docker_push("Wanderlust-frontend","3.2","madhupdevops")
+                    docker_push("wanderlust-frontend","3.2","madhupdevops")
                 }
             }
         }
@@ -71,7 +71,7 @@ pipeline {
         stage("Docker: Pushing Backend to DockerHub"){
             steps{
                 script{
-                    docker_push("Wanderlust-backend","3.2","madhupdevops")
+                    docker_push("wanderlust-backend","3.2","madhupdevops")
                 }
             }
         }
