@@ -1,0 +1,18 @@
+@Library('shared_lib') _
+
+pipeline {
+    agent {label 'slave1'}
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Git: Code Checkout') {
+            steps {
+                code_checkout("https://github.com/DevMadhup/wanderlust.git","feat-131-dockerize")
+            }
+        }
+    }
+}
