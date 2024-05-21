@@ -20,7 +20,9 @@ pipeline {
         stage('SonarQube: Code Quality') {
             steps {
                 script{
-                    sonarqube_code_quality()
+                    withSonarQubeEnv("sonar"){
+                        sonarqube_code_quality()
+                    }
                 }
             }
         }
