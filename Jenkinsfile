@@ -80,6 +80,7 @@ pipeline {
             steps{
                 script{
                     docker_cleanup("wanderlust-frontend","3.2","madhupdevops")
+                    docker_cleanup("wanderlust-backend","3.2","madhupdevops")
                 }
             }
         }
