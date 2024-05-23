@@ -90,3 +90,10 @@ pipeline {
         }
       }
 }
+
+/*Explanation
+build job: 'Wanderlust-CD' - triggers the CD job.
+propagate: true - ensures that the CI pipeline fails if the CD pipeline fails.
+wait: false - makes the CI pipeline do not wait for the CD pipeline to complete before proceeding.
+parameters allows passing parameters to the CD pipeline if needed.
+credentialsId: 'jenkins-cred' - uses the credentials you stored in Jenkins.*/
