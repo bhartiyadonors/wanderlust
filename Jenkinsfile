@@ -81,7 +81,10 @@ pipeline {
         stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user admin:${JENKINSAPI} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' '20.193.134.140:8080/job/Wanderlust-CD/'"
+                    build job: "Wanderlust-CD",
+                        propagate: true,
+                        wait: true,
+                        credentialsId: 'jenkins-cred'
                 }
             }
         }
