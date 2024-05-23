@@ -83,7 +83,7 @@ pipeline {
                 script {
                     build job: "Wanderlust-CD",
                         propagate: true,
-                        wait: false,
+                        wait: true,
                         parameters: [
                               string(name: 'IMAGETAG', value: '3.2')
                           ],
