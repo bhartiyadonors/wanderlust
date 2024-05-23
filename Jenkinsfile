@@ -83,7 +83,7 @@ pipeline {
                 script {
                     build job: "Wanderlust-CD",
                         propagate: true,
-                        wait: true,
+                        wait: false,
                         credentialsId: 'jenkins-cred'
                 }
             }
