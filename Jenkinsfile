@@ -85,7 +85,7 @@ pipeline {
                         propagate: true,
                         wait: false,
                         parameters: [
-                              string(name: 'ImageTag', value: '3.2')
+                              string(name: 'IMAGETAG', value: '3.2')
                           ],
                         credentialsId: 'jenkins-cred'
                 }
