@@ -1,0 +1,15 @@
+pipeline {
+    agent {label 'slave1'}
+    
+    parameters {
+        string(name: 'IMAGETAG', defaultValue: '', description: 'Parameter from CI pipeline')  
+    }
+
+    stages {
+        stage('Getting Image from CI pipeline') {
+            steps {
+                echo "${params.IMAGETAG}"
+            }
+        }
+    }
+}
