@@ -32,11 +32,12 @@ pipeline {
                     sh """
                         git config --global user.name "DevMadhup"
                         git config --global user.email "littledevopsengineer@gmail.com"
+                        git remote add origin https://github.com/DevMadhup/wanderlust
                         git add README.md
                         git commit -m "Updated README"
                         """
                         withCredentials([gitUsernamePassword(credentialsId: 'Github', gitToolName: 'Default')]) {
-                            sh "git push https://github.com/DevMadhup/wanderlust feat-131-dockerize"
+                            sh "git push origin feat-131-dockerize"
                     }
                 }
             }
