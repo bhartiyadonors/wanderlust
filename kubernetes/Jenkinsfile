@@ -43,7 +43,7 @@ pipeline {
                         git commit -m "Updated README"
                         """
                         withCredentials([gitUsernamePassword(credentialsId: 'Github', gitToolName: 'Default')]) {
-                            sh "git push origin main -ff"
+                            sh "git push https://github.com/DevMadhup/wanderlust.git feat-131-dockerize"
                     }
                 }
             }
