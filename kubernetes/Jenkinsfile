@@ -32,7 +32,6 @@ pipeline {
                     sh """
                         git config --global user.name "DevMadhup"
                         git config --global user.email "littledevopsengineer@gmail.com"
-                        git remote add origin https://github.com/DevMadhup/wanderlust
                         git add README.md
                         git commit -m "Updated README"
                         """
