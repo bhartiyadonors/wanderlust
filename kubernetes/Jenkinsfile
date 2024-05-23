@@ -8,7 +8,37 @@ pipeline {
     stages {
         stage('Getting Image from CI pipeline') {
             steps {
-                echo "${params.IMAGETAG}"
+                script{
+                    echo "Image: ${params.IMAGETAG}"
+                }
+            }
+        }
+
+        stage("Update the README") {
+            steps {
+                script{
+                    sh """
+                       cat README.md
+                       sed -i 's/Wanderlust/Wanderlust-Updated with Version-${params.IMAGETAG}/g' README.md
+                       cat README.md
+                    """
+                }
+            }
+        }
+
+        stage('Pushing latest Image to Github') {
+            steps {
+                script{
+                    sh """
+                        git config --global user.name "DevMadhup"
+                        git config --global user.email "littledevopsengineer@gmail.com"
+                        git add README.md
+                        git commit -m "Updated README"
+                        """
+                        withCredentials([gitUsernamePassword(credentialsId: 'Github', gitToolName: 'Default')]) {
+                            sh "git push https://github.com/DevMadhup/wanderlust feat-131-dockerize"
+                    }
+                }
             }
         }
     }
