@@ -16,13 +16,11 @@ pipeline {
         stage("Kubernetes: Update manifests with newer version") {
             steps {
                 script{
-                    sh """
-                       /*Update kubernetes frontend manifest*/
+                    sh """                       
                        cat kubernetes/frontend/frontend.yaml
                        sed -i "s/wanderlust-frontend.*/wanderlust-frontend:${params.IMAGETAG}/g" kubernetes/frontend/frontend.yaml
                        cat kubernetes/frontend/frontend.yaml
 
-                       /*Update kubernetes backend manifest*/
                        cat kubernetes/backend/backend.yaml
                        sed -i "s/wanderlust-backend.*/wanderlust-backend:${params.IMAGETAG}/g" kubernetes/backend/backend.yaml
                        cat kubernetes/backend/backend.yaml
