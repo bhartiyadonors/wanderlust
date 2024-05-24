@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'slave1'}
     
     parameters {
         string(name: 'IMAGETAG', defaultValue: '', description: 'Parameter from CI pipeline')  
@@ -7,40 +7,38 @@ pipeline {
 
     stages {
 
-        stage("Checkout from SCM") {
+        stage("Git: Checkout from SCM") {
                steps {
                    git branch: 'feat-131-dockerize', credentialsId: 'github', url: 'https://github.com/DevMadhup/wanderlust.git'
                }
         }
-        
-        stage('Getting Image from CI pipeline') {
-            steps {
-                script{
-                    echo "Image: ${params.IMAGETAG}"
-                }
-            }
-        }
 
-        stage("Update the README") {
+        stage("Kubernetes: Update manifests with newer version") {
             steps {
                 script{
                     sh """
-                       cat README.md
-                       sed -i 's/Wanderlust/Wanderlust-Staging with Version-${params.IMAGETAG}/g' README.md
-                       cat README.md
+                       /*Update kubernetes frontend manifest*/
+                       cat kubernetes/frontend/frontend.yaml
+                       sed -i "s/wanderlust-frontend.*/wanderlust-frontend:${params.IMAGETAG}/g" kubernetes/frontend/frontend.yaml
+                       cat kubernetes/frontend/frontend.yaml
+
+                       /*Update kubernetes backend manifest*/
+                       cat kubernetes/backend/backend.yaml
+                       sed -i "s/wanderlust-backend.*/wanderlust-backend:${params.IMAGETAG}/g" kubernetes/backend/backend.yaml
+                       cat kubernetes/backend/backend.yaml
                     """
                 }
             }
         }
 
-        stage('Pushing latest Image to Github') {
+        stage('GitHub: Pushing latest Image to Github') {
             steps {
                 script{
                     sh """
                         git config --global user.name "DevMadhup"
                         git config --global user.email "littledevopsengineer@gmail.com"
-                        git add README.md
-                        git commit -m "Updated README"
+                        git add .
+                        git commit -m "Application Manifests files updated with ${params.IMAGETAG} version"
                         """
                         withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
                             sh "git push https://github.com/DevMadhup/wanderlust.git feat-131-dockerize"
