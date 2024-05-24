@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'slave1'}
+    agent any
     
     parameters {
         string(name: 'IMAGETAG', defaultValue: '', description: 'Parameter from CI pipeline')  
@@ -9,7 +9,7 @@ pipeline {
 
         stage("Checkout from SCM") {
                steps {
-                   git branch: 'feat-131-dockerize', credentialsId: 'github', url: 'https://github.com/Ashfaque-9x/gitops-register-app'
+                   git branch: 'feat-131-dockerize', credentialsId: 'github', url: 'https://github.com/DevMadhup/wanderlust.git'
                }
         }
         
@@ -26,7 +26,7 @@ pipeline {
                 script{
                     sh """
                        cat README.md
-                       sed -i 's/Wanderlust/Wanderlust-Updated with Version-${params.IMAGETAG}/g' README.md
+                       sed -i 's/Wanderlust/Wanderlust-Staging with Version-${params.IMAGETAG}/g' README.md
                        cat README.md
                     """
                 }
@@ -42,7 +42,7 @@ pipeline {
                         git add README.md
                         git commit -m "Updated README"
                         """
-                        withCredentials([gitUsernamePassword(credentialsId: 'Github', gitToolName: 'Default')]) {
+                        withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
                             sh "git push https://github.com/DevMadhup/wanderlust.git feat-131-dockerize"
                     }
                 }
