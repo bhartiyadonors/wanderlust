@@ -78,7 +78,7 @@ pipeline {
             }
         }
 
-        stage("Trigger CD Pipeline") {
+        stage("Jenkins: Trigger CD Pipeline") {
             steps {
                 script {
                     build job: "Wanderlust-CD",
